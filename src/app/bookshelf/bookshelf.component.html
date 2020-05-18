@@ -1,0 +1,16 @@
+<div>
+   <ul>
+      <!-- <app-book-details *ngFor="let book of arrayBooks"
+                        titre={{book.titre}}
+                        auteur={{book.auteur}}> -->
+      <li *ngFor="let book of arrayBooks">
+         <div>
+            <h2>{{book.titre}} </h2>
+            <h3> de {{book.auteur}}</h3>
+            <p> écrit en {{book.annee}}</p>
+            <a [routerLink]="[book.id]">détails</a>
+         </div>
+      </li>
+      <!-- </app-book-details> -->
+   </ul>
+</div>
