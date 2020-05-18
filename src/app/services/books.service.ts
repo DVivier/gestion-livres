@@ -4,6 +4,7 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
 export class BooksService {
    
    arrayBooks= [
@@ -40,14 +41,37 @@ export class BooksService {
       // force le subject à émettre une copy (slice) du tableau  :
       this.booksSubject.next(this.arrayBooks.slice());
    }
-
+   
    getBookById (id:number){
       const book = this.arrayBooks.find
       (
          (s) => {
             return s.id === id;
          }
-      );
-   return book;
+         );
+         return book;
+   }
+      
+      
+   addBook(titre: any, auteur: any, annee: any, nombreDePages: any) {
+      // console.log('entre dans add')
+
+      const nouveauLivre = {
+         id: 0,
+         titre: '',
+         auteur: '',
+         annee: 0,
+         nombreDePages: 0
+       };
+       
+       nouveauLivre.titre = titre;
+       nouveauLivre.auteur = auteur;
+       nouveauLivre.annee = annee;
+       nouveauLivre.nombreDePages = nombreDePages;
+       nouveauLivre.id = this.arrayBooks[(this.arrayBooks.length - 1)].id + 1;
+       this.arrayBooks.push(nouveauLivre);
+       this.emitBooksSubject();
+      
    }
 }
+   

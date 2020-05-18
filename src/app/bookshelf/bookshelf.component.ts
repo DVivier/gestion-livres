@@ -27,4 +27,7 @@ export class BookshelfComponent implements OnInit {
       // console.log("nombre de poste :" + this.arrayBooks.length)
    }  
 
+   onAjouter(): void {
+      
+   }
 }

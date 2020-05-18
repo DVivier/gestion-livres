@@ -1,1 +1,29 @@
-<p>book-form works!</p>
+<div class="row">
+   <div class="col-sm-8 col-sm-offset-2">
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+         
+         <div class="form-group">
+            <label for="titre">Titre du livre</label>
+            <input type="text" id="titre" class="form-control" name="titre" ngModel required>
+         </div>
+         
+         <div class="form-group">
+            <label for="auteur">Auteur : </label>
+            <input type="text" id="auteur" class="form-control" name="auteur" ngModel required>
+
+         </div>
+
+         <div class="form-group">
+            <label for="annee">Année de parution</label>
+            <input type="text" id="annee" class="form-control" name="annee" ngModel required>
+         </div>
+
+         <div class="form-group">
+            <label for="nombreDePages">Nombre de pages</label>
+            <input type="text" id="nombreDePages" class="form-control" name="nombreDePages" ngModel required>
+         </div>
+
+         <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Enregistrer</button>
+      </form>
+   </div>
+ </div>
