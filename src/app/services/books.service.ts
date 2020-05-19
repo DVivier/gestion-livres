@@ -54,13 +54,26 @@ export class BooksService {
        this.arrayBooks.push(nouveauLivre);
        this.emitBooksSubject();
        this.saveBookshelfToServer();
+       
+      }
       
-   }
+      removeBook(id:number) {
+         // console.log("removeBook : id : " + id);
+         const index = this.arrayBooks.findIndex
+            ( s => s.id === id  );
+            
+         // console.log("removeBook : index : " + index);
+         if (index > -1) {
+            this.arrayBooks.splice(index,1);
+            this.emitBooksSubject();
+            this.saveBookshelfToServer();
+         }
+      }
+
    
    saveBookshelfToServer() {
       this.httpClient
          .put('https://biblio-dams-1011f.firebaseio.com//books.json', this.arrayBooks)
-      //   .post('https://prems-dv.firebaseio.com//appareils.json', this.tableauAppareilsService)
          .subscribe(
          () => {
             console.log('Enregistrement terminé !');

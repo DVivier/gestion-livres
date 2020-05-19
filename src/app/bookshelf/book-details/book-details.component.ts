@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BooksService } from 'src/app/services/books.service';
 import { Route } from '@angular/compiler/src/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-details',
@@ -16,7 +16,8 @@ export class BookDetailsComponent implements OnInit {
    nombreDePages: number;
 
    constructor(private booksService: BooksService,
-               private route: ActivatedRoute) {    }
+               private route: ActivatedRoute,
+               private router: Router) {    }
 
    
    ngOnInit(): void {
@@ -25,6 +26,18 @@ export class BookDetailsComponent implements OnInit {
       this.auteur = this.booksService.getBookById(+id).auteur;
       this.annee = this.booksService.getBookById(+id).annee;
       this.nombreDePages = this.booksService.getBookById(+id).nombreDePages;
+      
+   }
+
+   onSupprimer(): void {
+      if(confirm("On supprime ce livre ???")) {
+         const id = this.route.snapshot.params['id'];
+         console.log("onSupprimer : id : " + id);
+         // console.log("onSupprimer : i=titre : " + this.titre);
+         // this.booksService.removeBook(this.titre);
+         this.booksService.removeBook(+id);
+         this.router.navigate(['/bookshelf']);
+      }
       
    }
 }

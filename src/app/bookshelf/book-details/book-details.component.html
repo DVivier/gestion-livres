@@ -2,4 +2,8 @@
 <p>auteur : {{auteur}}</p>
 <p>en : {{annee}}</p>
 <p>nombre de pages :  {{nombreDePages}}</p>
+<div>
+   <button class="btn btn-danger" id="bouton-supprimer"
+            (click)="onSupprimer()" >Suppimer ce livre</button>
+</div>
 <a routerLink="bookshelf">Retour à la liste</a>
