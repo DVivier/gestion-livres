@@ -1,29 +1,49 @@
 <div class="row">
    <div class="col-sm-8 col-sm-offset-2">
-      <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
          
          <div class="form-group">
-            <label for="titre">Titre du livre</label>
-            <input type="text" id="titre" class="form-control" name="titre" ngModel required>
+
+            <mat-form-field class="full-width">
+               <input matInput placeholder="Titre du livre" formControlName="titre">
+               <mat-error class="error-message"
+                        *ngIf="bookForm.get('titre').touched">Champ obligatoire</mat-error>
+            </mat-form-field>
          </div>
          
          <div class="form-group">
-            <label for="auteur">Auteur : </label>
-            <input type="text" id="auteur" class="form-control" name="auteur" ngModel required>
-
+            <mat-form-field class="full-width">
+               <input matInput placeholder="Auteur" formControlName="auteur">
+               <mat-error class="error-message"
+               *ngIf="bookForm.get('auteur').touched">Champ obligatoire</mat-error>
+            </mat-form-field>
+         </div>
+         
+         <div class="form-group">
+            <mat-form-field class="full-width">
+               <input matInput placeholder="Année de parution" formControlName="annee">
+               <mat-error *ngFor="let validation of bookFormMessages.annee">
+                  <mat-error class="error-message" 
+                             *ngIf="bookForm.get('annee').hasError(validation.type) && (bookForm.get('annee').dirty 
+                                    || bookForm.get('annee').touched)">{{validation.message}}
+                  </mat-error>
+               </mat-error>
+            </mat-form-field>
          </div>
 
          <div class="form-group">
-            <label for="annee">Année de parution</label>
-            <input type="text" id="annee" class="form-control" name="annee" ngModel required>
+            <mat-form-field class="full-width">
+               <input matInput placeholder="Nombre de pages" formControlName="nombreDePages">
+               <mat-error *ngFor="let validation of bookFormMessages.nombreDePages">
+                  <mat-error class="error-message" 
+                             *ngIf="bookForm.get('nombreDePages').hasError(validation.type) && (bookForm.get('nombreDePages').dirty 
+                                    || bookForm.get('nombreDePages').touched)">{{validation.message}}
+                  </mat-error>
+               </mat-error>
+            </mat-form-field>
          </div>
 
-         <div class="form-group">
-            <label for="nombreDePages">Nombre de pages</label>
-            <input type="text" id="nombreDePages" class="form-control" name="nombreDePages" ngModel required>
-         </div>
-
-         <button class="btn btn-primary" type="submit" [disabled]="f.invalid">Enregistrer</button>
+         <button class="btn btn-primary" type="submit" [disabled]="bookForm.invalid">Enregistrer</button>
       </form>
    </div>
  </div>
