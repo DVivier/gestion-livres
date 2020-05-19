@@ -6,6 +6,7 @@ import { MatButtonModule} from '@angular/material/button';
 import { MatCheckboxModule} from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule }     from '@angular/material/datepicker';
+import { HttpClientModule } from '@angular/common/http';
 // import { MatNativeDateModule }     from '@angular/material/d';
 
   
@@ -52,6 +53,7 @@ const appRoutes: Routes = [
     SignInComponent
   ],
   imports: [
+      HttpClientModule,
       BrowserModule,
       MatButtonModule,
       MatCheckboxModule,
